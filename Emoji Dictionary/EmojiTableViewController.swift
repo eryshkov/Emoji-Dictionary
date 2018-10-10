@@ -44,9 +44,7 @@ class EmojiTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        return emojis.filter({ (emoji) -> Bool in
-            return emoji.type == EmojiType.allCases[section]
-        }).count
+        return EmojiSection(section).count
         
     }
 
@@ -54,9 +52,7 @@ class EmojiTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "EmojiTableViewCell", for: indexPath) as? EmojiTableViewCell else {fatalError("Cell is not EmojiTableViewCell")}
 
-        let emojiSection = emojis.filter({ (emoji) -> Bool in
-            return emoji.type == EmojiType.allCases[indexPath.section]
-        })
+        let emojiSection = EmojiSection(indexPath.section)
         let emoji = emojiSection[indexPath.row]
         
         cell.update(with: emoji)
@@ -66,10 +62,14 @@ class EmojiTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        
-        let movedEmojii = emojis.remove(at: sourceIndexPath.row)
-        emojis.insert(movedEmojii, at: destinationIndexPath.row)
-        tableView.reloadData()
+        if sourceIndexPath.section == destinationIndexPath.section {
+            let movedEmojii = emojis.remove(at: EmojiAbsoluteIndex(indexPath: sourceIndexPath))
+            emojis.insert(movedEmojii, at: EmojiAbsoluteIndex(indexPath: destinationIndexPath) + 1)
+            tableView.reloadData()
+        }else {
+            tableView.reloadData()
+        }
+
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
@@ -124,7 +124,31 @@ class EmojiTableViewController: UITableViewController {
     // MARK: - UITableViewDelegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let emoji = emojis[indexPath.row]
-        print("\(emoji.symbol) - \(indexPath)")
+        let emoji = emojis[EmojiAbsoluteIndex(indexPath: indexPath)]
+        print("\(emoji.symbol) - \(indexPath) abs=\(EmojiAbsoluteIndex(indexPath: indexPath))")
+    }
+    
+    // MARK: - Emojis engine
+    
+    func EmojiSection(_ section: Int) -> [Emoji] {
+        return emojis.filter({ (emoji) -> Bool in
+            return emoji.type == EmojiType.allCases[section]
+        })
+    }
+    
+    func NumOfEmojisInSection(_ section: Int) -> Int {
+        return EmojiSection(section).count
+    }
+    
+    func EmojiAbsoluteIndex(indexPath: IndexPath) -> Int {
+        var currentSection = indexPath.section
+        var absoluteIndex = 0
+        
+        while currentSection > 0 {
+            absoluteIndex += NumOfEmojisInSection(currentSection) + 1
+            currentSection -= 1
+        }
+        
+        return absoluteIndex + indexPath.row
     }
 }
