@@ -145,11 +145,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Emoji" id="RoA-wr-Xlp">
-                        <barButtonItem key="leftBarButtonItem" systemItem="undo" id="84q-rg-af6"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="undo" id="84q-rg-af6">
+                            <connections>
+                                <segue destination="a0h-cr-RWB" kind="unwind" unwindAction="unwindToEmojiTableViewController:" id="Bme-i6-nM1"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="gx7-LJ-B0y"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y75-lM-2TU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="a0h-cr-RWB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="951" y="140"/>
         </scene>

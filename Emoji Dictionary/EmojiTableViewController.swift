@@ -63,8 +63,10 @@ class EmojiTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         if sourceIndexPath.section == destinationIndexPath.section {
-            let movedEmojii = emojis.remove(at: EmojiAbsoluteIndex(indexPath: sourceIndexPath))
-            emojis.insert(movedEmojii, at: EmojiAbsoluteIndex(indexPath: destinationIndexPath) + 1)
+            let oldIndex = EmojiAbsoluteIndex(indexPath: sourceIndexPath)
+            let newIndex = EmojiAbsoluteIndex(indexPath: destinationIndexPath)
+            let movedEmojii = emojis.remove(at: oldIndex)
+            emojis.insert(movedEmojii, at: newIndex)
             tableView.reloadData()
         }else {
             tableView.reloadData()
@@ -120,6 +122,11 @@ class EmojiTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func unwindToEmojiTableViewController(_ unwindSegue: UIStoryboardSegue) {
+//        let sourceViewController = unwindSegue.source
+        // Use data from the view controller which initiated the unwind segue
+    }
 
     // MARK: - UITableViewDelegate
     
@@ -143,6 +150,7 @@ class EmojiTableViewController: UITableViewController {
     func EmojiAbsoluteIndex(indexPath: IndexPath) -> Int {
         var currentSection = indexPath.section
         var absoluteIndex = 0
+        
         
         while currentSection > 0 {
             absoluteIndex += NumOfEmojisInSection(currentSection) + 1
