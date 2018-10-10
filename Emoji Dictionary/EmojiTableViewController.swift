@@ -34,17 +34,19 @@ class EmojiTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return EmojiType.allCases.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return EmojiType.allCases[section].rawValue.capitalized
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        if section == 0 {
-            return emojis.count
-        }else {
-            return 0
-        }
+        return emojis.filter({ (emoji) -> Bool in
+            return emoji.type == EmojiType.allCases[section]
+        }).count
         
     }
 
@@ -52,7 +54,10 @@ class EmojiTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "EmojiTableViewCell", for: indexPath) as? EmojiTableViewCell else {fatalError("Cell is not EmojiTableViewCell")}
 
-        let emoji = emojis[indexPath.row]
+        let emojiSection = emojis.filter({ (emoji) -> Bool in
+            return emoji.type == EmojiType.allCases[indexPath.section]
+        })
+        let emoji = emojiSection[indexPath.row]
         
         cell.update(with: emoji)
 //        cell.showsReorderControl = true

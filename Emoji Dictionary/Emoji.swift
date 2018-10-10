@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum EmojiType: String {
+enum EmojiType: String, CaseIterable {
     case animal = "Животные", smile = "Смайлы"
 }
 
