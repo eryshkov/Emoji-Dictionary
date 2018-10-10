@@ -10,6 +10,7 @@ import UIKit
 
 class EmojiTableViewController: UITableViewController {
 
+    var selectedEmoji: Emoji?
     var emojis: [Emoji] = [
         Emoji(symbol: "🐢", name: "Черепаха", description: "Зеленая черепаха", usage: "медленное движение", type: .animal),
         Emoji(symbol: "🐰", name: "Заяц", description: "Заяц с ушами", usage: "быстрое движение", type: .animal),
@@ -113,15 +114,22 @@ class EmojiTableViewController: UITableViewController {
     }
     */
 
-    /*
+    // MARK: - IBActions
+    
+    @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
+        self.selectedEmoji = nil
+        performSegue(withIdentifier: "EmojiDetailSegue", sender: sender)
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let dvc = segue.destination as? EmojiDetailTableViewController  else { return }
+        dvc.emoji = selectedEmoji
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    */
     
     @IBAction func unwindToEmojiTableViewController(_ unwindSegue: UIStoryboardSegue) {
 //        let sourceViewController = unwindSegue.source

@@ -75,7 +75,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Emoji List" id="cQ7-Tw-jh2">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ys2-gv-6zu"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ys2-gv-6zu">
+                            <connections>
+                                <action selector="addButtonTapped:" destination="jd8-oK-lwA" id="sPN-cm-NGV"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="hL3-c1-BCn" kind="show" identifier="EmojiDetailSegue" id="Q0S-Ab-jk1"/>
@@ -102,6 +106,31 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vwy-pV-OCI" id="aVG-j1-Vbb">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="QNM-Zd-wke">
+                                                    <rect key="frame" x="16" y="6" width="343" height="30"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emoji symbol" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yxp-lX-4Ab">
+                                                            <rect key="frame" x="0.0" y="0.0" width="101" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A3a-kn-dyR">
+                                                            <rect key="frame" x="111" y="0.0" width="232" height="30"/>
+                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                        </textField>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="QNM-Zd-wke" secondAttribute="bottom" constant="7.5" id="DTl-5u-BPw"/>
+                                                <constraint firstItem="QNM-Zd-wke" firstAttribute="leading" secondItem="aVG-j1-Vbb" secondAttribute="leading" constant="16" id="nnn-Uv-BMX"/>
+                                                <constraint firstItem="QNM-Zd-wke" firstAttribute="trailing" secondItem="aVG-j1-Vbb" secondAttribute="trailing" constant="-16" id="tJw-ew-YpO"/>
+                                                <constraint firstItem="QNM-Zd-wke" firstAttribute="top" secondItem="aVG-j1-Vbb" secondAttribute="top" constant="6" id="zUg-bg-kOU"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="yiw-Vm-H9Q">
