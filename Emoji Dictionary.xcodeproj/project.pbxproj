@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C86F82F216E8669007753AF /* EmojiDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C86F82E216E8669007753AF /* EmojiDetailTableViewController.swift */; };
 		5CB8574E216BC81900367649 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8574D216BC81900367649 /* AppDelegate.swift */; };
 		5CB85753216BC81900367649 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CB85751216BC81900367649 /* Main.storyboard */; };
 		5CB85755216BC81B00367649 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5CB85754216BC81B00367649 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5C86F82E216E8669007753AF /* EmojiDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiDetailTableViewController.swift; sourceTree = "<group>"; };
 		5CB8574A216BC81900367649 /* Emoji Dictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Emoji Dictionary.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CB8574D216BC81900367649 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5CB85752216BC81900367649 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 			children = (
 				5CB8574D216BC81900367649 /* AppDelegate.swift */,
 				5CB85751216BC81900367649 /* Main.storyboard */,
+				5C86F82E216E8669007753AF /* EmojiDetailTableViewController.swift */,
 				5CB85763216BE06F00367649 /* EmojiTableViewCell.swift */,
 				5CB85761216BCA9900367649 /* EmojiTableViewController.swift */,
 				5CB8575F216BC8C600367649 /* Emoji.swift */,
@@ -145,6 +148,7 @@
 				5CB85762216BCA9900367649 /* EmojiTableViewController.swift in Sources */,
 				5CB85764216BE06F00367649 /* EmojiTableViewCell.swift in Sources */,
 				5CB8574E216BC81900367649 /* AppDelegate.swift in Sources */,
+				5C86F82F216E8669007753AF /* EmojiDetailTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,7 +303,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dum22ns90.com1004.Emoji-Dictionary";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = 1c464673d6c37021b2a764971fd295fdd5391daf;
+				PROVISIONING_PROFILE_SPECIFIER = 2in1;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -318,7 +322,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dum22ns90.com1004.Emoji-Dictionary";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = 1c464673d6c37021b2a764971fd295fdd5391daf;
+				PROVISIONING_PROFILE_SPECIFIER = 2in1;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
