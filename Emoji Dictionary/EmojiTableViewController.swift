@@ -11,13 +11,13 @@ import UIKit
 class EmojiTableViewController: UITableViewController {
 
     var emojis: [Emoji] = [
-        Emoji(symbol: "🐢", name: "Turtle", description: "Зеленая черепаха", usage: "медленное движение"),
-        Emoji(symbol: "🐰", name: "Заяц", description: "Заяц с ушами", usage: "быстрое движение"),
-        Emoji(symbol: "🐱", name: "Кошка", description: "Желтый кот", usage: "хитрое поведение"),
-        Emoji(symbol: "🐶", name: "Собака", description: "Типичный пёс", usage: "открытое поведение"),
-        Emoji(symbol: "😀", name: "Смайлик", description: "Улыбающаяся мордочка", usage: "полное счастье"),
-        Emoji(symbol: "😇", name: "Ангел", description: "Мордочка с нимбом", usage: "хорошие поступки"),
-        Emoji(symbol: "😍", name: "Влюбленный", description: "Влюбленная мордочка", usage: "состояние влюбленности"),
+        Emoji(symbol: "🐢", name: "Черепаха", description: "Зеленая черепаха", usage: "медленное движение", type: .animal),
+        Emoji(symbol: "🐰", name: "Заяц", description: "Заяц с ушами", usage: "быстрое движение", type: .animal),
+        Emoji(symbol: "🐱", name: "Кошка", description: "Желтый кот", usage: "хитрое поведение", type: .animal),
+        Emoji(symbol: "🐶", name: "Собака", description: "Типичный пёс", usage: "открытое поведение", type: .animal),
+        Emoji(symbol: "😀", name: "Смайлик", description: "Улыбающаяся мордочка", usage: "полное счастье", type: .smile),
+        Emoji(symbol: "😇", name: "Ангел", description: "Мордочка с нимбом", usage: "хорошие поступки", type: .smile),
+        Emoji(symbol: "😍", name: "Влюбленный", description: "Влюбленная мордочка", usage: "состояние влюбленности", type: .smile),
     ]
     
     override func viewDidLoad() {
@@ -50,13 +50,12 @@ class EmojiTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "EmojiTableViewCell", for: indexPath) as? EmojiTableViewCell else {fatalError("Cell is not EmojiTableViewCell")}
 
         let emoji = emojis[indexPath.row]
         
-        cell.textLabel?.text = "\(emoji.symbol) - \(emoji.name)"
-        cell.detailTextLabel?.text = emoji.description
-        cell.showsReorderControl = true
+        cell.update(with: emoji)
+//        cell.showsReorderControl = true
 
         return cell
     }
@@ -65,6 +64,10 @@ class EmojiTableViewController: UITableViewController {
         let movedEmojii = emojis.remove(at: sourceIndexPath.row)
         emojis.insert(movedEmojii, at: destinationIndexPath.row)
         tableView.reloadData()
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
     }
 
     /*

@@ -8,16 +8,22 @@
 
 import Foundation
 
+enum EmojiType: String {
+    case animal = "Животные", smile = "Смайлы"
+}
+
 class Emoji {
     var symbol: String
     var name: String
     var description: String
     var usage: String
+    var type: EmojiType
     
-    init(symbol: String, name: String, description: String, usage: String) {
+    init(symbol: String, name: String, description: String, usage: String, type: EmojiType) {
         self.symbol = symbol
         self.name = name
         self.description = description
         self.usage = usage
+        self.type = type
     }
 }
