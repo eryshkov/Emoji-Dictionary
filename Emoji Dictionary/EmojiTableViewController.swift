@@ -66,6 +66,7 @@ class EmojiTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
         let movedEmojii = emojis.remove(at: sourceIndexPath.row)
         emojis.insert(movedEmojii, at: destinationIndexPath.row)
         tableView.reloadData()
@@ -124,6 +125,6 @@ class EmojiTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let emoji = emojis[indexPath.row]
-        print("\(emoji.symbol) - \(indexPath.row)")
+        print("\(emoji.symbol) - \(indexPath)")
     }
 }
