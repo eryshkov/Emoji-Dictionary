@@ -41,7 +41,7 @@ class EmojiTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        return getNumOfEmojiInSection(section)
+        return emojis.getEmojiInSectionCount(section)!
         
     }
 
@@ -49,22 +49,18 @@ class EmojiTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "EmojiTableViewCell", for: indexPath) as? EmojiTableViewCell else {fatalError("Cell is not EmojiTableViewCell")}
 
-        let emojiSection = getEmojiSection(indexPath.section)
-        let emoji = emojiSection[indexPath.row]
-        
+        let emoji = emojis.getEmojiFor(indexPath: indexPath)!
         cell.update(with: emoji)
-//        cell.showsReorderControl = true
 
         return cell
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         if sourceIndexPath.section == destinationIndexPath.section {
-            let oldIndex = getEmojiAbsoluteIndex(indexPath: sourceIndexPath)
-            let newIndex = getEmojiAbsoluteIndex(indexPath: destinationIndexPath)
-            let movedEmojii = emojis.remove(at: oldIndex)
-            emojis.insert(movedEmojii, at: newIndex)
-            tableView.reloadData()
+            if let movedEmoji = emojis.removeEmojiFor(indexPath: sourceIndexPath) {
+                emojis.insert(emoji: movedEmoji, at: destinationIndexPath)
+                tableView.reloadData()
+            }
         }else {
             tableView.reloadData()
         }
@@ -137,6 +133,7 @@ class EmojiTableViewController: UITableViewController {
     }
     
     @IBAction func unwindToEmojiTableViewController(_ unwindSegue: UIStoryboardSegue) {
+//        tableView.reloadData()
 //        let sourceViewController = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
     }
@@ -144,35 +141,11 @@ class EmojiTableViewController: UITableViewController {
     // MARK: - UITableViewDelegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let emoji = emojis[getEmojiAbsoluteIndex(indexPath: indexPath)]
-        print("\(emoji.symbol) - \(indexPath) abs=\(getEmojiAbsoluteIndex(indexPath: indexPath))")
+        let emoji = emojis.getEmojiFor(indexPath: indexPath)
+        print("\(emoji?.symbol ?? "") - \(indexPath)")
         
         performSegue(withIdentifier: "EmojiDetailSegue", sender: emoji)
     }
     
-    // MARK: - Emojis engine
     
-    func getEmojiSection(_ section: Int) -> [Emoji] {
-        return emojis.filter({ (emoji) -> Bool in
-            return emoji.type == EmojiType.allCases[section]
-        })
-    }
-    
-    func getNumOfEmojiInSection(_ section: Int) -> Int {
-        return getEmojiSection(section).count
-    }
-    
-    func getEmojiAbsoluteIndex(indexPath: IndexPath) -> Int {
-        var selectedSection = indexPath.section
-        var currentSection = 0
-        var absoluteIndex = 0
-        
-        
-        while currentSection < selectedSection {
-            absoluteIndex += getNumOfEmojiInSection(currentSection)
-            currentSection += 1
-        }
-        
-        return absoluteIndex + indexPath.row
-    }
 }

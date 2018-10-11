@@ -53,7 +53,7 @@ class EmojiDetailTableViewController: UITableViewController {
         if let emoji = self.emoji {
             symbolText.text = emoji.symbol
             nameText.text = emoji.name
-            descriptionText.text = emoji.description
+            descriptionText.text = emoji.about
             usageText.text = emoji.usage
             if let emojiTypeSelected = emoji.getIndexOfType() {
                 typePicker.selectRow(emojiTypeSelected, inComponent: 0, animated: false)
@@ -69,9 +69,10 @@ class EmojiDetailTableViewController: UITableViewController {
         if let emoji = self.emoji {
             emoji.symbol = symbolText.text!
             emoji.name = nameText.text!
-            emoji.description = descriptionText.text!
+            emoji.about = descriptionText.text!
             emoji.usage = usageText.text!
-            emoji.type = EmojiType.allCases[typePicker.selectedRow(inComponent: 0)]
+            let newSection = EmojiType.allCases[typePicker.selectedRow(inComponent: 0)]
+            emojis.updateSectionFor(emoji: emoji, newSection: newSection)
             previousTableView?.reloadData()
             print("\(#function) edit emoji")
         }else{
@@ -81,8 +82,9 @@ class EmojiDetailTableViewController: UITableViewController {
             let usage = usageText.text!
             let emojiType = EmojiType.allCases[typePicker.selectedRow(inComponent: 0)]
             let newEmoji = Emoji(symbol: symbol, name: name, description: description, usage: usage, type: emojiType)
-            emojis.append(newEmoji)
-            previousTableView?.reloadData()
+            let newIndexPath = emojis.append(emoji: newEmoji)
+            print(emojis)
+            previousTableView?.insertRows(at: [newIndexPath!], with: .fade)
             print("\(#function) create emoji")
         }
         navigationController?.popViewController(animated: true)
