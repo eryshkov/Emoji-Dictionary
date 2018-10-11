@@ -26,6 +26,8 @@ class EmojiDetailTableViewController: UITableViewController {
     @IBOutlet weak var typePicker: UIPickerView!
     
     var emoji: Emoji?
+    var emojis = Emojis.content
+    var previousTableView: UITableView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +60,32 @@ class EmojiDetailTableViewController: UITableViewController {
                 print(emojiTypeSelected)
             }
         }
+    }
+    
+    // MARK: - IBActions
+    
+    @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
+        print("\(#function)")
+        if let emoji = self.emoji {
+            emoji.symbol = symbolText.text!
+            emoji.name = nameText.text!
+            emoji.description = descriptionText.text!
+            emoji.usage = usageText.text!
+            emoji.type = EmojiType.allCases[typePicker.selectedRow(inComponent: 0)]
+            previousTableView?.reloadData()
+            print("\(#function) edit emoji")
+        }else{
+            let symbol = symbolText.text!
+            let name = nameText.text!
+            let description = descriptionText.text!
+            let usage = usageText.text!
+            let emojiType = EmojiType.allCases[typePicker.selectedRow(inComponent: 0)]
+            let newEmoji = Emoji(symbol: symbol, name: name, description: description, usage: usage, type: emojiType)
+            emojis.append(newEmoji)
+            previousTableView?.reloadData()
+            print("\(#function) create emoji")
+        }
+        navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Table view data source

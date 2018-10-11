@@ -280,10 +280,14 @@
                     <navigationItem key="navigationItem" title="Emoji" id="RoA-wr-Xlp">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="84q-rg-af6">
                             <connections>
-                                <segue destination="a0h-cr-RWB" kind="unwind" unwindAction="unwindToEmojiTableViewController:" id="Bme-i6-nM1"/>
+                                <segue destination="a0h-cr-RWB" kind="unwind" unwindAction="unwindToEmojiTableViewController:" id="GKe-bW-U9Y"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="gx7-LJ-B0y"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="gx7-LJ-B0y">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="hL3-c1-BCn" id="c91-wS-93y"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="descriptionLabel" destination="2hb-63-Wca" id="owA-ff-xOe"/>

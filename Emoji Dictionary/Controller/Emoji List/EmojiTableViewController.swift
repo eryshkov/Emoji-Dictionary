@@ -10,15 +10,7 @@ import UIKit
 
 class EmojiTableViewController: UITableViewController {
 
-    var emojis: [Emoji] = [
-        Emoji(symbol: "🐢", name: "Черепаха", description: "Зеленая черепаха", usage: "медленное движение", type: .animal),
-        Emoji(symbol: "🐰", name: "Заяц", description: "Заяц с ушами", usage: "быстрое движение", type: .animal),
-        Emoji(symbol: "🐱", name: "Кошка", description: "Желтый кот", usage: "хитрое поведение", type: .animal),
-        Emoji(symbol: "🐶", name: "Собака", description: "Типичный пёс", usage: "открытое поведение", type: .animal),
-        Emoji(symbol: "😀", name: "Смайлик", description: "Улыбающаяся мордочка", usage: "полное счастье", type: .smile),
-        Emoji(symbol: "😇", name: "Ангел", description: "Мордочка с нимбом", usage: "хорошие поступки", type: .smile),
-        Emoji(symbol: "😍", name: "Влюбленный", description: "Влюбленная мордочка", usage: "состояние влюбленности", type: .smile),
-    ]
+    var emojis = Emojis.content
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -135,6 +127,7 @@ class EmojiTableViewController: UITableViewController {
             guard let dvc = segue.destination as? EmojiDetailTableViewController  else { return }
             if let emoji = sender as? Emoji {
                 dvc.emoji = emoji
+                dvc.previousTableView = tableView
             }
         default:
             break
@@ -170,13 +163,14 @@ class EmojiTableViewController: UITableViewController {
     }
     
     func getEmojiAbsoluteIndex(indexPath: IndexPath) -> Int {
-        var currentSection = indexPath.section
+        var selectedSection = indexPath.section
+        var currentSection = 0
         var absoluteIndex = 0
         
         
-        while currentSection > 0 {
-            absoluteIndex += getNumOfEmojiInSection(currentSection) + 1
-            currentSection -= 1
+        while currentSection < selectedSection {
+            absoluteIndex += getNumOfEmojiInSection(currentSection)
+            currentSection += 1
         }
         
         return absoluteIndex + indexPath.row

@@ -15,6 +15,7 @@
 		5CB85760216BC8C600367649 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB8575F216BC8C600367649 /* Emoji.swift */; };
 		5CB85762216BCA9900367649 /* EmojiTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB85761216BCA9900367649 /* EmojiTableViewController.swift */; };
 		5CB85764216BE06F00367649 /* EmojiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB85763216BE06F00367649 /* EmojiTableViewCell.swift */; };
+		5CE790C0216F79CB001BEBFF /* Emojis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE790BF216F79CB001BEBFF /* Emojis.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		5CB8575F216BC8C600367649 /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		5CB85761216BCA9900367649 /* EmojiTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTableViewController.swift; sourceTree = "<group>"; };
 		5CB85763216BE06F00367649 /* EmojiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTableViewCell.swift; sourceTree = "<group>"; };
+		5CE790BF216F79CB001BEBFF /* Emojis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emojis.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				5CB8575F216BC8C600367649 /* Emoji.swift */,
+				5CE790BF216F79CB001BEBFF /* Emojis.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CE790C0216F79CB001BEBFF /* Emojis.swift in Sources */,
 				5CB85760216BC8C600367649 /* Emoji.swift in Sources */,
 				5CB85762216BCA9900367649 /* EmojiTableViewController.swift in Sources */,
 				5CB85764216BE06F00367649 /* EmojiTableViewCell.swift in Sources */,
