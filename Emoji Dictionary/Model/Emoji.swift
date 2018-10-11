@@ -27,11 +27,7 @@ class Emoji {
         self.type = type
     }
     
-    func getIndexOfType() -> Int? {
-        for (index, item) in EmojiType.allCases.enumerated() {
-            if item == self.type { return index}
-        }
-        
-        return nil
+    func getIndexOfType() -> Int? {        
+        return EmojiType.allCases.firstIndex(of: self.type)
     }
 }
