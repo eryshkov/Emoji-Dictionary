@@ -61,16 +61,56 @@
 			isa = PBXGroup;
 			children = (
 				5CB8574D216BC81900367649 /* AppDelegate.swift */,
-				5CB85751216BC81900367649 /* Main.storyboard */,
-				5C86F82E216E8669007753AF /* EmojiDetailTableViewController.swift */,
-				5CB85763216BE06F00367649 /* EmojiTableViewCell.swift */,
-				5CB85761216BCA9900367649 /* EmojiTableViewController.swift */,
-				5CB8575F216BC8C600367649 /* Emoji.swift */,
 				5CB85754216BC81B00367649 /* Assets.xcassets */,
-				5CB85756216BC81B00367649 /* LaunchScreen.storyboard */,
 				5CB85759216BC81B00367649 /* Info.plist */,
+				5CD4E51D216F3B3900170378 /* Model */,
+				5CD4E51E216F3B5F00170378 /* View */,
+				5CD4E51F216F3B6800170378 /* Controller */,
 			);
 			path = "Emoji Dictionary";
+			sourceTree = "<group>";
+		};
+		5CD4E51D216F3B3900170378 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5CB8575F216BC8C600367649 /* Emoji.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5CD4E51E216F3B5F00170378 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5CB85751216BC81900367649 /* Main.storyboard */,
+				5CB85756216BC81B00367649 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5CD4E51F216F3B6800170378 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5CD4E520216F3B9700170378 /* Emoji List */,
+				5CD4E521216F3BBF00170378 /* Emoji Detail */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		5CD4E520216F3B9700170378 /* Emoji List */ = {
+			isa = PBXGroup;
+			children = (
+				5CB85761216BCA9900367649 /* EmojiTableViewController.swift */,
+				5CB85763216BE06F00367649 /* EmojiTableViewCell.swift */,
+			);
+			path = "Emoji List";
+			sourceTree = "<group>";
+		};
+		5CD4E521216F3BBF00170378 /* Emoji Detail */ = {
+			isa = PBXGroup;
+			children = (
+				5C86F82E216E8669007753AF /* EmojiDetailTableViewController.swift */,
+			);
+			path = "Emoji Detail";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

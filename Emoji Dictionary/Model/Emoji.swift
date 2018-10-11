@@ -9,7 +9,7 @@
 import Foundation
 
 enum EmojiType: String, CaseIterable {
-    case animal = "Животные", smile = "Смайлы"
+    case animal = "Животные", smile = "Смайлы", other = "Прочие"
 }
 
 class Emoji {
