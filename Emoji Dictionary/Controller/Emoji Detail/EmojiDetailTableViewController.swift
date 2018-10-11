@@ -30,6 +30,7 @@ class EmojiDetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        layoutSetup()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -37,6 +38,26 @@ class EmojiDetailTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
+    func layoutSetup() {
+        symbolLabel.text = "Эмоджи"
+        nameLabel.text = "Название"
+        descriptionLabel.text = "Описание"
+        usageLabel.text = "Используется"
+        typeLabel.text = "Тип"
+        
+        tableView.tableFooterView = UIView()
+        tableView.isScrollEnabled = false
+        
+        if let emoji = self.emoji {
+            symbolText.text = emoji.symbol
+            nameText.text = emoji.name
+            descriptionText.text = emoji.description
+            usageText.text = emoji.usage
+            let emojiTypeSelected = EmojiType.allCases.firstIndex(of: emoji.type)!
+            typePicker.selectRow(emojiTypeSelected, inComponent: 1, animated: false)
+        }
+    }
+    
     // MARK: - Table view data source
 
 
@@ -94,5 +115,20 @@ class EmojiDetailTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+}
 
+ // MARK: - Picker view data source
+extension EmojiDetailTableViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return EmojiType.allCases.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return EmojiType.allCases[row].rawValue
+    }
 }
