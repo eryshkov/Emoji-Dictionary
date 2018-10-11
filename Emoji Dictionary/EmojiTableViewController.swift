@@ -45,7 +45,7 @@ class EmojiTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        return EmojiSection(section).count
+        return getNumOfEmojiInSection(section)
         
     }
 
@@ -53,7 +53,7 @@ class EmojiTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "EmojiTableViewCell", for: indexPath) as? EmojiTableViewCell else {fatalError("Cell is not EmojiTableViewCell")}
 
-        let emojiSection = EmojiSection(indexPath.section)
+        let emojiSection = getEmojiSection(indexPath.section)
         let emoji = emojiSection[indexPath.row]
         
         cell.update(with: emoji)
@@ -64,8 +64,8 @@ class EmojiTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         if sourceIndexPath.section == destinationIndexPath.section {
-            let oldIndex = EmojiAbsoluteIndex(indexPath: sourceIndexPath)
-            let newIndex = EmojiAbsoluteIndex(indexPath: destinationIndexPath)
+            let oldIndex = getEmojiAbsoluteIndex(indexPath: sourceIndexPath)
+            let newIndex = getEmojiAbsoluteIndex(indexPath: destinationIndexPath)
             let movedEmojii = emojis.remove(at: oldIndex)
             emojis.insert(movedEmojii, at: newIndex)
             tableView.reloadData()
@@ -146,29 +146,29 @@ class EmojiTableViewController: UITableViewController {
     // MARK: - UITableViewDelegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let emoji = emojis[EmojiAbsoluteIndex(indexPath: indexPath)]
-        print("\(emoji.symbol) - \(indexPath) abs=\(EmojiAbsoluteIndex(indexPath: indexPath))")
+        let emoji = emojis[getEmojiAbsoluteIndex(indexPath: indexPath)]
+        print("\(emoji.symbol) - \(indexPath) abs=\(getEmojiAbsoluteIndex(indexPath: indexPath))")
     }
     
     // MARK: - Emojis engine
     
-    func EmojiSection(_ section: Int) -> [Emoji] {
+    func getEmojiSection(_ section: Int) -> [Emoji] {
         return emojis.filter({ (emoji) -> Bool in
             return emoji.type == EmojiType.allCases[section]
         })
     }
     
-    func NumOfEmojisInSection(_ section: Int) -> Int {
-        return EmojiSection(section).count
+    func getNumOfEmojiInSection(_ section: Int) -> Int {
+        return getEmojiSection(section).count
     }
     
-    func EmojiAbsoluteIndex(indexPath: IndexPath) -> Int {
+    func getEmojiAbsoluteIndex(indexPath: IndexPath) -> Int {
         var currentSection = indexPath.section
         var absoluteIndex = 0
         
         
         while currentSection > 0 {
-            absoluteIndex += NumOfEmojisInSection(currentSection) + 1
+            absoluteIndex += getNumOfEmojiInSection(currentSection) + 1
             currentSection -= 1
         }
         
