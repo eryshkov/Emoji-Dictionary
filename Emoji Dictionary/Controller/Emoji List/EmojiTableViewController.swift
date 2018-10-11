@@ -10,7 +10,6 @@ import UIKit
 
 class EmojiTableViewController: UITableViewController {
 
-    var selectedEmoji: Emoji?
     var emojis: [Emoji] = [
         Emoji(symbol: "🐢", name: "Черепаха", description: "Зеленая черепаха", usage: "медленное движение", type: .animal),
         Emoji(symbol: "🐰", name: "Заяц", description: "Заяц с ушами", usage: "быстрое движение", type: .animal),
@@ -29,6 +28,11 @@ class EmojiTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
          self.navigationItem.leftBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.tableFooterView = UIView()
     }
 
     // MARK: - Table view data source
@@ -117,7 +121,6 @@ class EmojiTableViewController: UITableViewController {
     // MARK: - IBActions
     
     @IBAction func addButtonTapped(_ sender: UIBarButtonItem) {
-        self.selectedEmoji = nil
         performSegue(withIdentifier: "EmojiDetailSegue", sender: sender)
     }
     
@@ -130,7 +133,9 @@ class EmojiTableViewController: UITableViewController {
         switch segueID {
         case "EmojiDetailSegue":
             guard let dvc = segue.destination as? EmojiDetailTableViewController  else { return }
-            dvc.emoji = selectedEmoji
+            if let emoji = sender as? Emoji {
+                dvc.emoji = emoji
+            }
         default:
             break
         }
@@ -148,6 +153,8 @@ class EmojiTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let emoji = emojis[getEmojiAbsoluteIndex(indexPath: indexPath)]
         print("\(emoji.symbol) - \(indexPath) abs=\(getEmojiAbsoluteIndex(indexPath: indexPath))")
+        
+        performSegue(withIdentifier: "EmojiDetailSegue", sender: emoji)
     }
     
     // MARK: - Emojis engine

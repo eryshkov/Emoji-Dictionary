@@ -53,8 +53,10 @@ class EmojiDetailTableViewController: UITableViewController {
             nameText.text = emoji.name
             descriptionText.text = emoji.description
             usageText.text = emoji.usage
-            let emojiTypeSelected = EmojiType.allCases.firstIndex(of: emoji.type)!
-            typePicker.selectRow(emojiTypeSelected, inComponent: 1, animated: false)
+            if let emojiTypeSelected = emoji.getIndexOfType() {
+                typePicker.selectRow(emojiTypeSelected, inComponent: 0, animated: false)
+                print(emojiTypeSelected)
+            }
         }
     }
     

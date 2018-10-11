@@ -249,7 +249,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lbr-QU-CGb">
-                                                            <rect key="frame" x="58" y="0.0" width="230" height="77"/>
+                                                            <rect key="frame" x="57.5" y="0.0" width="230.5" height="77.5"/>
                                                             <connections>
                                                                 <outlet property="dataSource" destination="hL3-c1-BCn" id="kUf-fQ-twe"/>
                                                                 <outlet property="delegate" destination="hL3-c1-BCn" id="xVu-SH-7Lc"/>
@@ -278,7 +278,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Emoji" id="RoA-wr-Xlp">
-                        <barButtonItem key="leftBarButtonItem" systemItem="undo" id="84q-rg-af6">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="84q-rg-af6">
                             <connections>
                                 <segue destination="a0h-cr-RWB" kind="unwind" unwindAction="unwindToEmojiTableViewController:" id="Bme-i6-nM1"/>
                             </connections>
