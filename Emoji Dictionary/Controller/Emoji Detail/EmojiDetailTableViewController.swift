@@ -10,6 +10,21 @@ import UIKit
 
 class EmojiDetailTableViewController: UITableViewController {
 
+    @IBOutlet weak var symbolLabel: UILabel!
+    @IBOutlet weak var symbolText: UITextField!
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var nameText: UITextField!
+    
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var descriptionText: UITextField!
+    
+    @IBOutlet weak var usageLabel: UILabel!
+    @IBOutlet weak var usageText: UITextField!
+    
+    @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var typePicker: UIPickerView!
+    
     var emoji: Emoji?
     
     override func viewDidLoad() {
