@@ -95,7 +95,7 @@ class Emojis: CustomStringConvertible {
     }
     
     func insert(emoji: Emoji, at indexPath: IndexPath) {
-        let key = EmojiType.allCases[indexPath.section]
+        let key = EmojiType.getTypeFrom(index: indexPath.section)!
         if var currentSection = storage[EmojiType.getTypeFrom(index: indexPath.section)!] {
             currentSection.insert(emoji, at: indexPath.row)
             storage.updateValue(currentSection, forKey: key)

@@ -66,7 +66,7 @@ class EmojiDetailTableViewController: UITableViewController {
             emoji.name = nameText.text!
             emoji.about = descriptionText.text!
             emoji.usage = usageText.text!
-            let newSection = EmojiType.allCases[typePicker.selectedRow(inComponent: 0)]
+            let newSection = EmojiType.getTypeFrom(index: typePicker.selectedRow(inComponent: 0))!
             newIndexPath = emojis.updateSectionFor(emoji: emoji, newSection: newSection)
             print("\(#function) edit emoji")
         }else{ //new emoji
@@ -74,7 +74,7 @@ class EmojiDetailTableViewController: UITableViewController {
             let name = nameText.text!
             let description = descriptionText.text!
             let usage = usageText.text!
-            let emojiType = EmojiType.allCases[typePicker.selectedRow(inComponent: 0)]
+            let emojiType = EmojiType.getTypeFrom(index: typePicker.selectedRow(inComponent: 0))!
             let newEmoji = Emoji(symbol: symbol, name: name, description: description, usage: usage, type: emojiType)
             newIndexPath = emojis.append(emoji: newEmoji)
             print("\(#function) create emoji")
@@ -96,6 +96,6 @@ extension EmojiDetailTableViewController: UIPickerViewDelegate, UIPickerViewData
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return EmojiType.allCases[row].rawValue
+        return EmojiType.getTypeFrom(index: row)?.rawValue
     }
 }

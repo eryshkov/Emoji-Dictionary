@@ -31,7 +31,7 @@ class EmojiTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return EmojiType.allCases[section].rawValue.capitalized
+        return EmojiType.getTypeFrom(index: section)?.rawValue.capitalized
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
