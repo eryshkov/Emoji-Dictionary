@@ -78,7 +78,7 @@ class Emojis: CustomStringConvertible {
     
     func getEmojiFor(indexPath: IndexPath) -> Emoji? {
         var foundEmoji: Emoji? = nil
-        if var currentSection = storage[EmojiType.allCases[indexPath.section]] {
+        if var currentSection = storage[EmojiType.getTypeFrom(index: indexPath.section)!] {
             foundEmoji = currentSection[indexPath.row]
         }
         return foundEmoji
@@ -86,7 +86,7 @@ class Emojis: CustomStringConvertible {
     
     func removeEmojiFor(indexPath: IndexPath) -> Emoji? {
         var foundEmoji: Emoji? = nil
-        let key = EmojiType.allCases[indexPath.section]
+        let key = EmojiType.getTypeFrom(index: indexPath.section)!
         if var currentSection = storage[key] {
             foundEmoji = currentSection.remove(at: indexPath.row)
             storage.updateValue(currentSection, forKey: key)
@@ -96,14 +96,14 @@ class Emojis: CustomStringConvertible {
     
     func insert(emoji: Emoji, at indexPath: IndexPath) {
         let key = EmojiType.allCases[indexPath.section]
-        if var currentSection = storage[EmojiType.allCases[indexPath.section]] {
+        if var currentSection = storage[EmojiType.getTypeFrom(index: indexPath.section)!] {
             currentSection.insert(emoji, at: indexPath.row)
             storage.updateValue(currentSection, forKey: key)
         }
     }
     
     func getEmojiSection(_ section: Int) -> [Emoji]? {
-        return storage[EmojiType.allCases[section]]
+        return storage[EmojiType.getTypeFrom(index: section)!]
     }
     
     func getEmojiInSectionCount(_ section: Int) -> Int? {
