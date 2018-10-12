@@ -10,6 +10,14 @@ import Foundation
 
 enum EmojiType: String, CaseIterable {
     case animal = "Животные", smile = "Смайлы", other = "Прочие"
+    
+    static func getTypeFrom(index: Int) -> EmojiType? {
+        if index < EmojiType.allCases.count && index >= 0 {
+            return EmojiType.allCases[index]
+        }
+        
+        return nil
+    }
 }
 
 class Emoji: Equatable, CustomStringConvertible {
@@ -39,4 +47,5 @@ class Emoji: Equatable, CustomStringConvertible {
     func getIndexOfType() -> Int? {        
         return EmojiType.allCases.firstIndex(of: self.type)
     }
+    
 }
