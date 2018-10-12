@@ -27,6 +27,7 @@ class EmojiDetailTableViewController: UITableViewController {
     
     var emoji: Emoji?
     var emojis = Emojis.content
+    var newIndexPath: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,28 +66,24 @@ class EmojiDetailTableViewController: UITableViewController {
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         print("\(#function)")
-        if let emoji = self.emoji {
+        if let emoji = self.emoji { //edit emoji
             emoji.symbol = symbolText.text!
             emoji.name = nameText.text!
             emoji.about = descriptionText.text!
             emoji.usage = usageText.text!
             let newSection = EmojiType.allCases[typePicker.selectedRow(inComponent: 0)]
-            emojis.updateSectionFor(emoji: emoji, newSection: newSection)
-//            previousTableView?.reloadData()
+            newIndexPath = emojis.updateSectionFor(emoji: emoji, newSection: newSection)
             print("\(#function) edit emoji")
-        }else{
+        }else{ //new emoji
             let symbol = symbolText.text!
             let name = nameText.text!
             let description = descriptionText.text!
             let usage = usageText.text!
             let emojiType = EmojiType.allCases[typePicker.selectedRow(inComponent: 0)]
             let newEmoji = Emoji(symbol: symbol, name: name, description: description, usage: usage, type: emojiType)
-            _ = emojis.append(emoji: newEmoji)
-//            print(emojis, newIndexPath)
-//            previousTableView?.insertRows(at: [newIndexPath!], with: .fade)
+            newIndexPath = emojis.append(emoji: newEmoji)
             print("\(#function) create emoji")
         }
-//        navigationController?.popViewController(animated: true)
         performSegue(withIdentifier: "unwindToEmojiTableViewController", sender: nil)
     }
     

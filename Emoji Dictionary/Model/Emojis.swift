@@ -53,7 +53,7 @@ class Emojis: CustomStringConvertible {
         return nil
     }
     
-    func updateSectionFor(emoji: Emoji, newSection: EmojiType) {
+    func updateSectionFor(emoji: Emoji, newSection: EmojiType) -> IndexPath? {
         var oldSection = storage[emoji.type]!
         
         if emoji.type != newSection {
@@ -64,8 +64,14 @@ class Emojis: CustomStringConvertible {
             emoji.type = newSection
             newSectionArray.append(emoji)
             storage.updateValue(newSectionArray, forKey: newSection)
+            
+            let newRow = newSectionArray.count - 1
+            let newSectionColumn = emoji.getIndexOfType()!
+            return IndexPath(item: newRow, section: newSectionColumn)
         }else{
-            //do nothing
+            guard let currentRow = oldSection.firstIndex(of: emoji) else {return nil}
+            let newSectionColumn = emoji.getIndexOfType()!
+            return IndexPath(item: currentRow, section: newSectionColumn)
         }
         
     }
