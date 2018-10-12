@@ -56,7 +56,6 @@ class EmojiTableViewController: UITableViewController {
         if sourceIndexPath.section == destinationIndexPath.section {
             if let movedEmoji = emojis.removeEmojiFor(indexPath: sourceIndexPath) {
                 emojis.insert(emoji: movedEmoji, at: destinationIndexPath)
-                //                tableView.moveRow(at: sourceIndexPath, to: destinationIndexPath)
             }
         }else {
             if let movedEmoji = emojis.removeEmojiFor(indexPath: sourceIndexPath) {
@@ -67,7 +66,7 @@ class EmojiTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .none
+        return .delete
     }
     
     
@@ -125,5 +124,14 @@ class EmojiTableViewController: UITableViewController {
         performSegue(withIdentifier: "EmojiDetailSegue", sender: emoji)
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete:
+            _ = emojis.removeEmojiFor(indexPath: indexPath)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        default:
+            break
+        }
+    }
     
 }
