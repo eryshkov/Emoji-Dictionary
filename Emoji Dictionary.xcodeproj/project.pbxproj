@@ -16,6 +16,7 @@
 		5CB85762216BCA9900367649 /* EmojiTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB85761216BCA9900367649 /* EmojiTableViewController.swift */; };
 		5CB85764216BE06F00367649 /* EmojiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB85763216BE06F00367649 /* EmojiTableViewCell.swift */; };
 		5CE790C0216F79CB001BEBFF /* Emojis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE790BF216F79CB001BEBFF /* Emojis.swift */; };
+		5CE790C22170BAFB001BEBFF /* CheckEmoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE790C12170BAFB001BEBFF /* CheckEmoji.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		5CB85761216BCA9900367649 /* EmojiTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTableViewController.swift; sourceTree = "<group>"; };
 		5CB85763216BE06F00367649 /* EmojiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTableViewCell.swift; sourceTree = "<group>"; };
 		5CE790BF216F79CB001BEBFF /* Emojis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emojis.swift; sourceTree = "<group>"; };
+		5CE790C12170BAFB001BEBFF /* CheckEmoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmoji.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		5CB8574C216BC81900367649 /* Emoji Dictionary */ = {
 			isa = PBXGroup;
 			children = (
+				5CE790C32170BB57001BEBFF /* Extensions */,
 				5CB8574D216BC81900367649 /* AppDelegate.swift */,
 				5CB85754216BC81B00367649 /* Assets.xcassets */,
 				5CB85759216BC81B00367649 /* Info.plist */,
@@ -114,6 +117,14 @@
 				5C86F82E216E8669007753AF /* EmojiDetailTableViewController.swift */,
 			);
 			path = "Emoji Detail";
+			sourceTree = "<group>";
+		};
+		5CE790C32170BB57001BEBFF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5CE790C12170BAFB001BEBFF /* CheckEmoji.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +200,7 @@
 			files = (
 				5CE790C0216F79CB001BEBFF /* Emojis.swift in Sources */,
 				5CB85760216BC8C600367649 /* Emoji.swift in Sources */,
+				5CE790C22170BAFB001BEBFF /* CheckEmoji.swift in Sources */,
 				5CB85762216BCA9900367649 /* EmojiTableViewController.swift in Sources */,
 				5CB85764216BE06F00367649 /* EmojiTableViewCell.swift in Sources */,
 				5CB8574E216BC81900367649 /* AppDelegate.swift in Sources */,
