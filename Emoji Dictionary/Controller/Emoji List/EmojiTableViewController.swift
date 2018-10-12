@@ -27,7 +27,7 @@ class EmojiTableViewController: UITableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return EmojiType.allCases.count
+        return EmojiType.allCasesCount()
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

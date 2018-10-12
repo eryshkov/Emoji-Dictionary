@@ -10,10 +10,14 @@ enum EmojiType: String, CaseIterable {
     case animal = "Животные", smile = "Смайлы", other = "Прочие"
     
     static func getTypeFrom(index: Int) -> EmojiType? {
-        if index < EmojiType.allCases.count && index >= 0 {
+        if index < EmojiType.allCasesCount() && index >= 0 {
             return EmojiType.allCases[index]
         }
         
         return nil
+    }
+    
+    static func allCasesCount() -> Int {
+        return EmojiType.allCases.count
     }
 }
