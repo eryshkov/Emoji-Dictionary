@@ -134,7 +134,23 @@ class EmojiTableViewController: UITableViewController {
     
     @IBAction func unwindToEmojiTableViewController(_ unwindSegue: UIStoryboardSegue) {
         if unwindSegue.identifier == "unwindToEmojiTableViewController" {
-            tableView.reloadData()
+            guard let prevViewController = unwindSegue.source as? EmojiDetailTableViewController else {return}
+            if let oldCellIndexPath = tableView.indexPathForSelectedRow {
+                // edit emoji
+                if let newCellIndexPath = prevViewController.newIndexPath {
+                    if oldCellIndexPath == newCellIndexPath {
+                        tableView.reloadRows(at: [newCellIndexPath], with: .fade)
+                    }else{
+                        tableView.moveRow(at: oldCellIndexPath, to: newCellIndexPath)
+                    }
+                }
+            }else{
+                // add emoji
+                if let newCellIndexPath = prevViewController.newIndexPath {
+                    tableView.insertRows(at: [newCellIndexPath], with: .fade)
+                    
+                }
+            }
         }
         
 //        let sourceViewController = unwindSegue.source

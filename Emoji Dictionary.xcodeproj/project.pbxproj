@@ -89,6 +89,7 @@
 			children = (
 				5CB85751216BC81900367649 /* Main.storyboard */,
 				5CB85756216BC81B00367649 /* LaunchScreen.storyboard */,
+				5CB85763216BE06F00367649 /* EmojiTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -106,7 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				5CB85761216BCA9900367649 /* EmojiTableViewController.swift */,
-				5CB85763216BE06F00367649 /* EmojiTableViewCell.swift */,
 			);
 			path = "Emoji List";
 			sourceTree = "<group>";
