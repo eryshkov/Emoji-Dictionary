@@ -27,7 +27,6 @@ class EmojiDetailTableViewController: UITableViewController {
     
     var emoji: Emoji?
     var emojis = Emojis.content
-    var previousTableView: UITableView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +72,7 @@ class EmojiDetailTableViewController: UITableViewController {
             emoji.usage = usageText.text!
             let newSection = EmojiType.allCases[typePicker.selectedRow(inComponent: 0)]
             emojis.updateSectionFor(emoji: emoji, newSection: newSection)
-            previousTableView?.reloadData()
+//            previousTableView?.reloadData()
             print("\(#function) edit emoji")
         }else{
             let symbol = symbolText.text!
@@ -82,12 +81,13 @@ class EmojiDetailTableViewController: UITableViewController {
             let usage = usageText.text!
             let emojiType = EmojiType.allCases[typePicker.selectedRow(inComponent: 0)]
             let newEmoji = Emoji(symbol: symbol, name: name, description: description, usage: usage, type: emojiType)
-            let newIndexPath = emojis.append(emoji: newEmoji)
-            print(emojis)
-            previousTableView?.insertRows(at: [newIndexPath!], with: .fade)
+            _ = emojis.append(emoji: newEmoji)
+//            print(emojis, newIndexPath)
+//            previousTableView?.insertRows(at: [newIndexPath!], with: .fade)
             print("\(#function) create emoji")
         }
-        navigationController?.popViewController(animated: true)
+//        navigationController?.popViewController(animated: true)
+        performSegue(withIdentifier: "unwindToEmojiTableViewController", sender: nil)
     }
     
     // MARK: - Table view data source

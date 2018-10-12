@@ -123,7 +123,6 @@ class EmojiTableViewController: UITableViewController {
             guard let dvc = segue.destination as? EmojiDetailTableViewController  else { return }
             if let emoji = sender as? Emoji {
                 dvc.emoji = emoji
-                dvc.previousTableView = tableView
             }
         default:
             break
@@ -131,9 +130,13 @@ class EmojiTableViewController: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
+
     
     @IBAction func unwindToEmojiTableViewController(_ unwindSegue: UIStoryboardSegue) {
-//        tableView.reloadData()
+        if unwindSegue.identifier == "unwindToEmojiTableViewController" {
+            tableView.reloadData()
+        }
+        
 //        let sourceViewController = unwindSegue.source
         // Use data from the view controller which initiated the unwind segue
     }

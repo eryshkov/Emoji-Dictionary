@@ -280,7 +280,7 @@
                     <navigationItem key="navigationItem" title="Emoji" id="RoA-wr-Xlp">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="84q-rg-af6">
                             <connections>
-                                <segue destination="a0h-cr-RWB" kind="unwind" unwindAction="unwindToEmojiTableViewController:" id="GKe-bW-U9Y"/>
+                                <segue destination="a0h-cr-RWB" kind="unwind" identifier="unwindToEmojiTableViewController" unwindAction="unwindToEmojiTableViewController:" id="x7Y-iw-djB"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="gx7-LJ-B0y">

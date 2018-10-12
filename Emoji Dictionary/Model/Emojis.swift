@@ -55,13 +55,19 @@ class Emojis: CustomStringConvertible {
     
     func updateSectionFor(emoji: Emoji, newSection: EmojiType) {
         var oldSection = storage[emoji.type]!
-        let oldRow = oldSection.firstIndex(of: emoji)
-        oldSection.remove(at: oldRow!)
-        storage.updateValue(oldSection, forKey: emoji.type)
-        var newSectionArray = storage[newSection]!
-        emoji.type = newSection
-        newSectionArray.append(emoji)
-        storage.updateValue(newSectionArray, forKey: newSection)
+        
+        if emoji.type != newSection {
+            let oldRow = oldSection.firstIndex(of: emoji)
+            oldSection.remove(at: oldRow!)
+            storage.updateValue(oldSection, forKey: emoji.type)
+            var newSectionArray = storage[newSection]!
+            emoji.type = newSection
+            newSectionArray.append(emoji)
+            storage.updateValue(newSectionArray, forKey: newSection)
+        }else{
+            //do nothing
+        }
+        
     }
     
     func getEmojiFor(indexPath: IndexPath) -> Emoji? {
