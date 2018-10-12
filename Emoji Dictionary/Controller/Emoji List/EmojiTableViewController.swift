@@ -56,10 +56,11 @@ class EmojiTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
         if sourceIndexPath.section == destinationIndexPath.section {
             if let movedEmoji = emojis.removeEmojiFor(indexPath: sourceIndexPath) {
                 emojis.insert(emoji: movedEmoji, at: destinationIndexPath)
-                tableView.reloadData()
+                tableView.moveRow(at: sourceIndexPath, to: destinationIndexPath)
             }
         }else {
             tableView.reloadData()
