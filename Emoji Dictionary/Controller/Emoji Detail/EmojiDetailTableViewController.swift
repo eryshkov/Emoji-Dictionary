@@ -10,19 +10,10 @@ import UIKit
 
 class EmojiDetailTableViewController: UITableViewController {
 
-    @IBOutlet weak var symbolLabel: UILabel!
     @IBOutlet weak var symbolText: UITextField!
-    
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var nameText: UITextField!
-    
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var nameText: UITextField!    
     @IBOutlet weak var descriptionText: UITextField!
-    
-    @IBOutlet weak var usageLabel: UILabel!
     @IBOutlet weak var usageText: UITextField!
-    
-    @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var typePicker: UIPickerView!
     
     var emoji: Emoji?
@@ -36,11 +27,7 @@ class EmojiDetailTableViewController: UITableViewController {
     }
 
     func layoutSetup() {
-        symbolLabel.text = "Эмоджи"
-        nameLabel.text = "Название"
-        descriptionLabel.text = "Описание"
-        usageLabel.text = "Используется"
-        typeLabel.text = "Тип"
+
         
         tableView.tableFooterView = UIView()
         tableView.isScrollEnabled = false
@@ -58,7 +45,6 @@ class EmojiDetailTableViewController: UITableViewController {
     }
     
     // MARK: - IBActions
-    
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
         print("\(#function)")
         if let emoji = self.emoji { //edit emoji
@@ -82,6 +68,10 @@ class EmojiDetailTableViewController: UITableViewController {
         performSegue(withIdentifier: "unwindToEmojiTableViewController", sender: nil)
     }
     
+    // MARK: - UITableView DataSource
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return DetailVCSections.allCases[section].rawValue
+    }
     
 }
 
