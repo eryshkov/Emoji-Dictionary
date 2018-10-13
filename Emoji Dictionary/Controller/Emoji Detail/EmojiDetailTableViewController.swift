@@ -15,6 +15,7 @@ class EmojiDetailTableViewController: UITableViewController {
     @IBOutlet weak var descriptionText: UITextField!
     @IBOutlet weak var usageText: UITextField!
     @IBOutlet weak var typePicker: UIPickerView!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var emoji: Emoji?
     var emojis = Emojis.content
@@ -33,6 +34,8 @@ class EmojiDetailTableViewController: UITableViewController {
         // TODO: - implement hex color for UIColor
 //        tableView.tableFooterView?.backgroundColor = UIColor("F7F7F7")
         tableView.isScrollEnabled = false
+        
+        saveButton.isEnabled = false
         
         if let emoji = self.emoji {
             symbolText.text = emoji.symbol
@@ -70,10 +73,27 @@ class EmojiDetailTableViewController: UITableViewController {
         performSegue(withIdentifier: "unwindToEmojiTableViewController", sender: nil)
     }
     
+    @IBAction func textFieldValueChanged(_ sender: UITextField) {
+        let writtenText = (sender.text!).trimmingCharacters(in: .whitespacesAndNewlines)
+        sender.text = writtenText
+        guard writtenText.count < 2 else {
+            sender.text = String(writtenText.first!)
+            return
+        }
+        
+        guard writtenText.count != 0 else {return}
+        
+        guard writtenText.isContainEmoji() else {
+            sender.text?.removeAll()
+            return
+        }
+    }
+    
     // MARK: - UITableView DataSource
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return DetailVCSections.allCases[section].rawValue
     }
+    
     
 }
 

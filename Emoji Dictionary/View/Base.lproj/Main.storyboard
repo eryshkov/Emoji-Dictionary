@@ -113,6 +113,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="textFieldValueChanged:" destination="hL3-c1-BCn" eventType="editingChanged" id="l2a-bs-pWh"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -235,6 +238,7 @@
                     <connections>
                         <outlet property="descriptionText" destination="3yK-5c-R5Y" id="1IV-Lv-j2z"/>
                         <outlet property="nameText" destination="eY4-YP-umC" id="qNS-L8-mjR"/>
+                        <outlet property="saveButton" destination="gx7-LJ-B0y" id="jU1-AT-Ch9"/>
                         <outlet property="symbolText" destination="A3a-kn-dyR" id="LdN-Mk-fn9"/>
                         <outlet property="typePicker" destination="Kkc-H4-a0n" id="quc-aj-jHO"/>
                         <outlet property="usageText" destination="NFM-yY-q3q" id="aci-f6-ZxH"/>
