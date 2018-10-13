@@ -30,6 +30,8 @@ class EmojiDetailTableViewController: UITableViewController {
 
         
         tableView.tableFooterView = UIView()
+        // TODO: - implement hex color for UIColor
+//        tableView.tableFooterView?.backgroundColor = UIColor("F7F7F7")
         tableView.isScrollEnabled = false
         
         if let emoji = self.emoji {
