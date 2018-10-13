@@ -143,11 +143,11 @@ extension EmojiDetailTableViewController: UITextFieldDelegate{
     }
     
     func delegateAllTextFields(rootView: UIView) { //Must call in the viewDidLoad() for example
-        print("delegate enter")
+//        print("delegate enter")
         for someView in getAllSubviews(rootView: rootView) {
             if let someTextField = someView as? UITextField {
                 someTextField.delegate = self
-                                print("Text field detected")
+//                                print("Text field detected")
             }
         }
     }
