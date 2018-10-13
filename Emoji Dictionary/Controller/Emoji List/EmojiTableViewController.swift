@@ -15,12 +15,13 @@ class EmojiTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.leftBarButtonItem = self.editButtonItem
+        layoutSetup()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    func layoutSetup() {
         tableView.tableFooterView = UIView()
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
+        navigationItem.title = "Список Эмоджи"
     }
     
     // MARK: - Table view data source
@@ -86,6 +87,9 @@ class EmojiTableViewController: UITableViewController {
             guard let dvc = segue.destination as? EmojiDetailTableViewController  else { return }
             if let emoji = sender as? Emoji {
                 dvc.emoji = emoji
+                dvc.navigationItem.title = "Правка Эмоджи"
+            }else{
+                dvc.navigationItem.title = "Новый Эмоджи"
             }
         default:
             break
