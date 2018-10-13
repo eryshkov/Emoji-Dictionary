@@ -17,8 +17,8 @@ class EmojiDetailTableViewController: UITableViewController {
     @IBOutlet weak var typePicker: UIPickerView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
-    var emoji: Emoji?
-    var emojis = Emojis.content
+    weak var emoji: Emoji?
+    weak var emojis = Emojis.content
     var newIndexPath: IndexPath?
     
     override func viewDidLoad() {
@@ -28,14 +28,10 @@ class EmojiDetailTableViewController: UITableViewController {
     }
 
     func layoutSetup() {
-
-        
         tableView.tableFooterView = UIView()
         // TODO: - implement hex color for UIColor
 //        tableView.tableFooterView?.backgroundColor = UIColor("F7F7F7")
         tableView.isScrollEnabled = false
-        
-        saveButton.isEnabled = false
         
         if let emoji = self.emoji {
             symbolText.text = emoji.symbol
@@ -45,6 +41,24 @@ class EmojiDetailTableViewController: UITableViewController {
             if let emojiTypeSelected = emoji.getIndexOfType() {
                 typePicker.selectRow(emojiTypeSelected, inComponent: 0, animated: false)
                 print(emojiTypeSelected)
+            }
+        }
+        
+        saveButtonSetup(senders: [symbolText])
+        delegateAllTextFields(rootView: symbolText)
+        delegateAllTextFields(rootView: nameText)
+        delegateAllTextFields(rootView: descriptionText)
+        delegateAllTextFields(rootView: usageText)
+        hideKeyboard()
+    }
+    
+    func saveButtonSetup(senders: [UITextField]) {
+        for textField in senders {
+            let sendersText = (textField.text!).trimmingCharacters(in: .whitespacesAndNewlines)
+            if sendersText.isEmpty {
+                saveButton.isEnabled = false
+            }else{
+                saveButton.isEnabled = true
             }
         }
     }
@@ -58,7 +72,7 @@ class EmojiDetailTableViewController: UITableViewController {
             emoji.about = descriptionText.text!
             emoji.usage = usageText.text!
             let newSection = EmojiType.getTypeFrom(index: typePicker.selectedRow(inComponent: 0))!
-            newIndexPath = emojis.updateSectionFor(emoji: emoji, newSection: newSection)
+            newIndexPath = emojis?.updateSectionFor(emoji: emoji, newSection: newSection)
             print("\(#function) edit emoji")
         }else{ //new emoji
             let symbol = symbolText.text!
@@ -67,7 +81,7 @@ class EmojiDetailTableViewController: UITableViewController {
             let usage = usageText.text!
             let emojiType = EmojiType.getTypeFrom(index: typePicker.selectedRow(inComponent: 0))!
             let newEmoji = Emoji(symbol: symbol, name: name, description: description, usage: usage, type: emojiType)
-            newIndexPath = emojis.append(emoji: newEmoji)
+            newIndexPath = emojis?.append(emoji: newEmoji)
             print("\(#function) create emoji")
         }
         performSegue(withIdentifier: "unwindToEmojiTableViewController", sender: nil)
@@ -78,15 +92,22 @@ class EmojiDetailTableViewController: UITableViewController {
         sender.text = writtenText
         guard writtenText.count < 2 else {
             sender.text = String(writtenText.first!)
+            saveButtonSetup(senders: [sender])
             return
         }
         
-        guard writtenText.count != 0 else {return}
+        guard writtenText.count != 0 else {
+            saveButtonSetup(senders: [sender])
+            return
+        }
         
         guard writtenText.isContainEmoji() else {
             sender.text?.removeAll()
+            saveButtonSetup(senders: [sender])
             return
         }
+        
+        saveButtonSetup(senders: [sender])
     }
     
     // MARK: - UITableView DataSource
@@ -109,5 +130,50 @@ extension EmojiDetailTableViewController: UIPickerViewDelegate, UIPickerViewData
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return EmojiType.getTypeFrom(index: row)?.rawValue
+    }
+}
+
+// MARK: - Hides keyboard on RETURN Button
+extension EmojiDetailTableViewController: UITextFieldDelegate{
+    // Hides keyboard on RETURN Button
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //        print("\(#function) executed")
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func delegateAllTextFields(rootView: UIView) { //Must call in the viewDidLoad() for example
+        print("delegate enter")
+        for someView in getAllSubviews(rootView: rootView) {
+            if let someTextField = someView as? UITextField {
+                someTextField.delegate = self
+                                print("Text field detected")
+            }
+        }
+    }
+    
+    func getAllSubviews(rootView: UIView) -> [UIView] {
+        
+        var flatArray: [UIView] = []
+        flatArray.append(rootView)
+        
+        for subview in rootView.subviews {
+            flatArray += getAllSubviews(rootView: subview)
+        }
+        return flatArray
+    }
+}
+
+// MARK: - Hides Keyboard on Touch Outside
+extension UIViewController { // Hides keyboard on Touch Outside Tap
+    
+    func hideKeyboard() {//Must call in the viewDidLoad() for example
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
