@@ -19,6 +19,7 @@
 		5CE790C22170BAFB001BEBFF /* CheckEmoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE790C12170BAFB001BEBFF /* CheckEmoji.swift */; };
 		5CE790C521713124001BEBFF /* EmojiType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE790C421713124001BEBFF /* EmojiType.swift */; };
 		5CE790C72171D1F1001BEBFF /* DetailVCSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE790C62171D1F1001BEBFF /* DetailVCSections.swift */; };
+		5CE790CA21732443001BEBFF /* KeyboardHide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE790C921732443001BEBFF /* KeyboardHide.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		5CE790C12170BAFB001BEBFF /* CheckEmoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmoji.swift; sourceTree = "<group>"; };
 		5CE790C421713124001BEBFF /* EmojiType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiType.swift; sourceTree = "<group>"; };
 		5CE790C62171D1F1001BEBFF /* DetailVCSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVCSections.swift; sourceTree = "<group>"; };
+		5CE790C921732443001BEBFF /* KeyboardHide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHide.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				5CE790C12170BAFB001BEBFF /* CheckEmoji.swift */,
+				5CE790C921732443001BEBFF /* KeyboardHide.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				5CB85762216BCA9900367649 /* EmojiTableViewController.swift in Sources */,
 				5CB85764216BE06F00367649 /* EmojiTableViewCell.swift in Sources */,
 				5CB8574E216BC81900367649 /* AppDelegate.swift in Sources */,
+				5CE790CA21732443001BEBFF /* KeyboardHide.swift in Sources */,
 				5C86F82F216E8669007753AF /* EmojiDetailTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
