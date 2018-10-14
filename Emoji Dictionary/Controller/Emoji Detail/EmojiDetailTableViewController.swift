@@ -30,7 +30,7 @@ class EmojiDetailTableViewController: UITableViewController {
     func layoutSetup() {
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = UIColor(hexValue: "#F7F7F7", alpha: 1.0)
-        tableView.isScrollEnabled = false
+//        tableView.isScrollEnabled = false
         
         if let emoji = self.emoji {
             symbolText.text = emoji.symbol
@@ -45,7 +45,7 @@ class EmojiDetailTableViewController: UITableViewController {
         
         saveButtonSetup(senders: [symbolText])
         delegateAllTextFields(rootView: view)
-        hideKeyboard()
+        hideKeyboard(view: view)
     }
     
     func saveButtonSetup(senders: [UITextField]) {

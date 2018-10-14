@@ -61,7 +61,7 @@ extension EmojiDetailTableViewController: UITextFieldDelegate{
 extension UIViewController {
     
     //Must call in the viewDidLoad() for example
-    func hideKeyboard() {
+    func hideKeyboard(view: UIView) {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)

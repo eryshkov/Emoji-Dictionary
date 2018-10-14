@@ -107,6 +107,7 @@ class EmojiTableViewController: UITableViewController {
                         tableView.reloadRows(at: [newCellIndexPath], with: .fade)
                     }else{
                         tableView.moveRow(at: oldCellIndexPath, to: newCellIndexPath)
+                        tableView.reloadRows(at: [newCellIndexPath], with: .none)
                     }
                 }
             }else{

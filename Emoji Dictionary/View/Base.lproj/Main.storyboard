@@ -63,7 +63,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="descriptionLabel" destination="hVz-gW-EHY" id="U7F-Pc-nRr"/>
+                                    <outlet property="aboutLabel" destination="hVz-gW-EHY" id="6pF-gr-nBQ"/>
                                     <outlet property="nameLabel" destination="qz1-3d-kJf" id="OS5-SL-hcE"/>
                                     <outlet property="symbolLabel" destination="IjY-N4-8Rt" id="Ad5-MF-yGI"/>
                                 </connections>
