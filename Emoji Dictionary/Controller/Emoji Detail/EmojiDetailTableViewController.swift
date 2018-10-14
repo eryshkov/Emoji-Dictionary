@@ -45,10 +45,7 @@ class EmojiDetailTableViewController: UITableViewController {
         }
         
         saveButtonSetup(senders: [symbolText])
-        delegateAllTextFields(rootView: symbolText)
-        delegateAllTextFields(rootView: nameText)
-        delegateAllTextFields(rootView: descriptionText)
-        delegateAllTextFields(rootView: usageText)
+        delegateAllTextFields(rootView: view)
         hideKeyboard()
     }
     
@@ -142,12 +139,29 @@ extension EmojiDetailTableViewController: UITextFieldDelegate{
         return true
     }
     
-    func delegateAllTextFields(rootView: UIView) { //Must call in the viewDidLoad() for example
-//        print("delegate enter")
+    //Must call in the viewDidLoad() for example
+    func delegateAllTextFieldsAt(tableView: UITableView) {
+        for cell in tableView.visibleCells {
+                for someView in getAllSubviews(rootView: cell) {
+                    if let someTextField = someView as? UITextField {
+                        someTextField.delegate = self
+//                        print("Text field detected")
+                    }
+                }
+            
+        }
+    }
+    
+    //Must call in the viewDidLoad() for example
+    func delegateAllTextFields(rootView: UIView) {
         for someView in getAllSubviews(rootView: rootView) {
+            
             if let someTextField = someView as? UITextField {
                 someTextField.delegate = self
-//                                print("Text field detected")
+//                print("Text field detected")
+            }
+            if let someTableView = someView as? UITableView {
+                delegateAllTextFieldsAt(tableView: someTableView)
             }
         }
     }
