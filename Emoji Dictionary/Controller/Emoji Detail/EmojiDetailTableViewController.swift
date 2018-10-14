@@ -132,6 +132,7 @@ extension EmojiDetailTableViewController: UIPickerViewDelegate, UIPickerViewData
 
 // MARK: - Hides keyboard on RETURN Button
 extension EmojiDetailTableViewController: UITextFieldDelegate{
+    
     // Hides keyboard on RETURN Button
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //        print("\(#function) executed")
@@ -179,9 +180,10 @@ extension EmojiDetailTableViewController: UITextFieldDelegate{
 }
 
 // MARK: - Hides Keyboard on Touch Outside
-extension UIViewController { // Hides keyboard on Touch Outside Tap
+extension UIViewController {
     
-    func hideKeyboard() {//Must call in the viewDidLoad() for example
+    //Must call in the viewDidLoad() for example
+    func hideKeyboard() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
