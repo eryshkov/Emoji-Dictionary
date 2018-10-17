@@ -12,24 +12,28 @@ class Emojis: CustomStringConvertible, Codable {
     
     static var content = Emojis()
     
-    var storage: [EmojiType:[Emoji]] = [
-        EmojiType.animal:[
-            Emoji(symbol: "🐢", name: "Черепаха", description: "Зеленая черепаха", usage: "медленное движение", type: .animal),
-            Emoji(symbol: "🐰", name: "Заяц", description: "Заяц с ушами", usage: "быстрое движение", type: .animal),
-            Emoji(symbol: "🐱", name: "Кошка", description: "Желтый кот", usage: "хитрое поведение", type: .animal),
-            Emoji(symbol: "🐶", name: "Собака", description: "Типичный пёс", usage: "открытое поведение", type: .animal),
-        ],
-        EmojiType.smile:[
-            Emoji(symbol: "😀", name: "Смайлик", description: "Улыбающаяся мордочка", usage: "полное счастье", type: .smile),
-            Emoji(symbol: "😇", name: "Ангел", description: "Мордочка с нимбом", usage: "хорошие поступки", type: .smile),
-            Emoji(symbol: "😍", name: "Влюбленный", description: "Влюбленная мордочка", usage: "состояние влюбленности", type: .smile),
-        ],
-        EmojiType.other:[
-            Emoji(symbol: "🧦", name: "Носки", description: "Трикотажное изделие", usage: "надеть на ноги", type: .other),
-        ],
-    ]
+    let fileName = "emojis"
+    let fileExtension = "plist"
     
-    private init() {}
+    var storage: [EmojiType:[Emoji]] = [EmojiType:[Emoji]]()
+//        [
+//        EmojiType.animal:[
+//            Emoji(symbol: "🐢", name: "Черепаха", description: "Зеленая черепаха", usage: "медленное движение", type: .animal),
+//            Emoji(symbol: "🐰", name: "Заяц", description: "Заяц с ушами", usage: "быстрое движение", type: .animal),
+//            Emoji(symbol: "🐱", name: "Кошка", description: "Желтый кот", usage: "хитрое поведение", type: .animal),
+//            Emoji(symbol: "🐶", name: "Собака", description: "Типичный пёс", usage: "открытое поведение", type: .animal),
+//        ],
+//        EmojiType.smile:[
+//            Emoji(symbol: "😀", name: "Смайлик", description: "Улыбающаяся мордочка", usage: "полное счастье", type: .smile),
+//            Emoji(symbol: "😇", name: "Ангел", description: "Мордочка с нимбом", usage: "хорошие поступки", type: .smile),
+//            Emoji(symbol: "😍", name: "Влюбленный", description: "Влюбленная мордочка", usage: "состояние влюбленности", type: .smile),
+//        ],
+//        EmojiType.other:[
+//            Emoji(symbol: "🧦", name: "Носки", description: "Трикотажное изделие", usage: "надеть на ноги", type: .other),
+//        ],
+//    ]
+    
+    private init() {readFromFile(withFilename: fileName, fileExtension: fileExtension)}
     
     var description: String {
         var result = ""

@@ -22,6 +22,8 @@ class EmojiTableViewController: UITableViewController {
         tableView.tableFooterView = UIView()
         self.navigationItem.leftBarButtonItem = self.editButtonItem
         navigationItem.title = "Список Эмоджи"
+//        emojis.saveToFile(withFilename: emojis.fileName, fileExtension: emojis.fileExtension)
+        
     }
     
     // MARK: - Table view data source
