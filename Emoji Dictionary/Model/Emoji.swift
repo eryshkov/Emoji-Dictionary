@@ -6,7 +6,7 @@
 //  Copyright © 2018 Evgeniy Ryshkov. All rights reserved.
 //
 
-class Emoji: Equatable, CustomStringConvertible {
+class Emoji: Equatable, CustomStringConvertible, Codable {
     
     var symbol: String
     var name: String

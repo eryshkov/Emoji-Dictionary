@@ -6,7 +6,7 @@
 //  Copyright © 2018 Evgeniy Ryshkov. All rights reserved.
 //
 
-enum EmojiType: String, CaseIterable {
+enum EmojiType: String, CaseIterable, Codable {
     case animal = "Животные", smile = "Смайлы", other = "Прочие"
     
     static func getTypeFrom(index: Int) -> EmojiType? {

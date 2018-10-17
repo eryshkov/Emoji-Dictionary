@@ -7,7 +7,7 @@
 //
 
 import UIKit
-class Emojis: CustomStringConvertible {
+class Emojis: CustomStringConvertible, Codable {
     
     
     static var content = Emojis()
