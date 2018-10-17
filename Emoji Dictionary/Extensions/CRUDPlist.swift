@@ -31,6 +31,14 @@ extension Emojis {
             if let decodedEmojis = try? plistDecoder.decode([EmojiType:[Emoji]].self, from: encodedEmojis) {
                 self.storage = decodedEmojis
             }
+        }else{
+            let path = Bundle.main.path(forResource: self.fileName, ofType: self.fileExtension)!
+            let urlPath = URL(fileURLWithPath: path)
+            if let encodedEmojis = try? Data(contentsOf: urlPath) {
+                if let decodedEmojis = try? plistDecoder.decode([EmojiType:[Emoji]].self, from: encodedEmojis) {
+                    self.storage = decodedEmojis
+                }
+            }
         }
     }
 }

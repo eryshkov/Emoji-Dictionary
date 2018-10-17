@@ -69,7 +69,7 @@ class EmojiDetailTableViewController: UITableViewController {
             emoji.usage = usageText.text!
             let newSection = EmojiType.getTypeFrom(index: typePicker.selectedRow(inComponent: 0))!
             newIndexPath = emojis?.updateSectionFor(emoji: emoji, newSection: newSection)
-            print("\(#function) edit emoji")
+//            print("\(#function) edit emoji")
         }else{ //new emoji
             let symbol = symbolText.text!
             let name = nameText.text!
@@ -78,8 +78,9 @@ class EmojiDetailTableViewController: UITableViewController {
             let emojiType = EmojiType.getTypeFrom(index: typePicker.selectedRow(inComponent: 0))!
             let newEmoji = Emoji(symbol: symbol, name: name, description: description, usage: usage, type: emojiType)
             newIndexPath = emojis?.append(emoji: newEmoji)
-            print("\(#function) create emoji")
+//            print("\(#function) create emoji")
         }
+        emojis?.saveToFile(withFilename: emojis!.fileName, fileExtension: emojis!.fileExtension)
         performSegue(withIdentifier: "unwindToEmojiTableViewController", sender: nil)
     }
     
