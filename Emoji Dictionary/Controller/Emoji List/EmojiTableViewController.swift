@@ -66,6 +66,7 @@ class EmojiTableViewController: UITableViewController {
                 movedEmoji.type = EmojiType.getTypeFrom(index: destinationIndexPath.section)!
             }
         }
+        emojis.saveToFile(withFilename: emojis.fileName, fileExtension: emojis.fileExtension)
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
@@ -109,7 +110,11 @@ class EmojiTableViewController: UITableViewController {
                         tableView.reloadRows(at: [newCellIndexPath], with: .fade)
                     }else{
                         tableView.moveRow(at: oldCellIndexPath, to: newCellIndexPath)
-                        tableView.reloadRows(at: [newCellIndexPath], with: .none)
+//                        tableView.reloadRows(at: [newCellIndexPath], with: .none)
+                        tableView.beginUpdates()
+                        let cell = tableView.cellForRow(at: newCellIndexPath) as! EmojiTableViewCell
+                        cell.update(with: emojis.getEmojiFor(indexPath: newCellIndexPath)!)
+                        tableView.endUpdates()
                     }
                 }
             }else{
@@ -135,6 +140,7 @@ class EmojiTableViewController: UITableViewController {
         switch editingStyle {
         case .delete:
             _ = emojis.removeEmojiFor(indexPath: indexPath)
+            emojis.saveToFile(withFilename: emojis.fileName, fileExtension: emojis.fileExtension)
             tableView.deleteRows(at: [indexPath], with: .fade)
         default:
             break
