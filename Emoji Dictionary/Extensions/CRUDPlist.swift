@@ -1,5 +1,5 @@
 //
-//  SaveToPlist.swift
+//  CRUDPlist.swift
 //  Emoji Dictionary
 //
 //  Created by Evgeniy Ryshkov on 17/10/2018.
