@@ -16,17 +16,17 @@ extension Emojis {
         return archiveURL
     }
     
-    func saveToFile(withFilename: String, fileExtension: String) {
+    func saveToFile(withFilename fileName: String, fileExtension: String) {
         let plistEncoder = PropertyListEncoder()
         let encodedEmojis = try? plistEncoder.encode(self.storage)
         
-        let emojisURL = getWorkingDirectory(withFilename: withFilename, fileExtension: fileExtension)
+        let emojisURL = getWorkingDirectory(withFilename: fileName, fileExtension: fileExtension)
         try? encodedEmojis?.write(to: emojisURL)
     }
     
-    func readFromFile(withFilename: String, fileExtension: String) {
+    func readFromFile(withFilename fileName: String, fileExtension: String) {
         let plistDecoder = PropertyListDecoder()
-        let emojisURL = getWorkingDirectory(withFilename: withFilename, fileExtension: fileExtension)
+        let emojisURL = getWorkingDirectory(withFilename: fileName, fileExtension: fileExtension)
         if let encodedEmojis = try? Data(contentsOf: emojisURL) {
             if let decodedEmojis = try? plistDecoder.decode([EmojiType:[Emoji]].self, from: encodedEmojis) {
                 self.storage = decodedEmojis
